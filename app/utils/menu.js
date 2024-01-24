@@ -2,27 +2,27 @@ import {list, check, todo, home} from "./icons";
 const menu = [
     {
         id: 1,
-        title: "Wszystkie zadania",
+        title: "Wszystkie",
         icon: home,
         link: '/',
     },
     {
         id: 2,
-        title: "Ważne!",
+        title: "Ważne",
         icon: list,
-        link: '/important',
+        link: '/section-important',
     },
     {
         id: 3,
-        title: "Wykonano!",
+        title: "Wykonano",
         icon: check,
-        link: '/completed',
+        link: '/section-completed',
     },
     {
         id: 4,
         title: "Do zrobienia",
         icon: todo,
-        link: '/incomplete',
+        link: '/section-incomplete',
     },
 ];
 export default menu;
