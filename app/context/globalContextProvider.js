@@ -16,6 +16,7 @@ export const GlobalProvider = ({ children }) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [modal, setModal] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
   const [tasks, setTasks] = useState([]);
 
@@ -27,11 +28,20 @@ export const GlobalProvider = ({ children }) => {
     setModal(false);
   };
 
+  const collapseMenu = () => {
+    setCollapsed(!collapsed);
+  }
+
   const getAllTasks = async () => {
     setIsLoading(true);
     try {
       const res = await axios.get("/api/tasks");
-      setTasks(res.data);
+
+      const sorted = res.data.sort((a, b) => {
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+      });
+
+      setTasks(sorted);
       setIsLoading(false);
     } catch (error) {
       toast.error("Proba wyswietlenia zadan nie powiodla sie.");
@@ -79,7 +89,9 @@ export const GlobalProvider = ({ children }) => {
         isLoading,
         modal,
         openModal,
-        closeModal
+        closeModal,
+        collapsed,
+        collapseMenu
       }}
     >
       <GlobalUpdateContext.Provider value={{}}>

@@ -1,4 +1,5 @@
 export const bars = <i className="fa-solid fa-bars"></i>;
+export const arrow = <i class="fa-solid fa-arrow-left"></i>
 export const add = <i className="fa-solid fa-plus"></i>;
 export const moon = <i className="fa-solid fa-moon"></i>;
 export const search = <i className="fa-solid fa-magnifying-glass"></i>;

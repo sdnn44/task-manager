@@ -1,5 +1,5 @@
 "use client"
-import { logout } from '@/app/utils/icons';
+import { arrow, bars, logout } from '@/app/utils/icons';
 import { useClerk, UserButton, useUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,7 +12,7 @@ import Button from '../Button/Button';
 
 const Sidebar = () => {
 
-  const { theme } = useGlobalState();
+  const { theme, collapsed, collapseMenu } = useGlobalState();
 
   const router = useRouter();
   const pathname = usePathname();
@@ -20,7 +20,7 @@ const Sidebar = () => {
   const { signOut } = useClerk();
 
   const { user } = useUser();
-  const {firstName, lastName, imageUrl} = user || {
+  const { firstName, lastName, imageUrl } = user || {
     firstName: "",
     lastName: "",
     imageUrl: "",
@@ -30,7 +30,10 @@ const Sidebar = () => {
     router.push(link);
   }
   return (
-    <SidebarStyled theme={theme}>
+    <SidebarStyled theme={theme} collapsed={collapsed}>
+      <button className="toggle-nav" onClick={collapseMenu}>
+        {collapsed ? bars : arrow}
+      </button>
       <div className="profile">
         <div className="profile-overlay"></div>
         <div className="image">
@@ -78,7 +81,7 @@ const Sidebar = () => {
   )
 }
 
-const SidebarStyled = styled.nav`
+const SidebarStyled = styled.nav<{ collapsed: boolean }>`
   width: ${(props) => props.theme.sidebarWidth};
   position: relative;
   background: ${(props) => props.theme.colorBg2};
@@ -90,6 +93,38 @@ const SidebarStyled = styled.nav`
   justify-content: space-between;
 
   color: ${(props) => props.theme.colorGrey3};
+
+  
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    z-index: 100;
+    height: calc(100vh - 2rem);
+    
+    transition: all .3s cubic-bezier(0.53, 0.21, 0, 1);
+    transform: ${(props) => props.collapsed ? "translateX(-100%)" : "translateX(0)"};
+
+    .toggle-nav {
+      display: block !important;
+      }
+  }
+
+  .toggle-nav {
+    display: none;
+    position: absolute;
+    right: -2rem;
+    top: 3.2rem;
+    padding: .8rem;
+    
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+
+    border-right: 2px solid ${(props) => props.theme.borderColor2};
+    border-top: 2px solid ${(props) => props.theme.borderColor2};
+    border-bottom: 2px solid ${(props) => props.theme.borderColor2};
+
+    background: ${(props) => props.theme.colorBg2};
+  }
+
 
   .user-btn {
     .cl-rootBox {
