@@ -20,6 +20,12 @@ export const GlobalProvider = ({ children }) => {
 
   const [tasks, setTasks] = useState([]);
 
+  const changeTheme = () => {
+    if(selectedTheme == 0)
+      setSelectedTheme(1);
+    else setSelectedTheme(0);
+  };
+
   const openModal = () => {
     setModal(true);
   };
@@ -79,6 +85,7 @@ export const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         theme,
+        changeTheme,
         tasks,
         getAllTasks,
         deleteTask,

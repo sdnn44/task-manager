@@ -48,11 +48,11 @@ const ModalStyled = styled.div`
         width: 100%;
         z-index: 100;
 
-        border-radius: 1rem;
-        background: ${(props) => props.theme.colorBg2};
+        background: ${(props) => props.theme.colorBgModal};
 
         box-shadow: 0 0 1rem rgba(0, 0, 0, .3);
-        border-radius: ${(props) => props.theme.borderRadiusMd2};
+        border: 1px solid ${(props) => props.theme.borderColor2};
+        border-radius: 10px;
     }
 `;
 

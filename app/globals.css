@@ -17,7 +17,8 @@
 }
 
 body {
-  background: #181818;
+  /* background: rgb(5,0,36); */
+  /* background: linear-gradient(90deg, rgba(5,0,36,1) 0%, rgba(5,24,64,1) 100%, rgba(9,45,121,1) 100%); */
   color: #fff;
   font-size: 17px;
   height: 100vh;
@@ -27,7 +28,6 @@ body {
   body {
    font-size: 90%; 
   }
-  
 }
 
 input, textarea, button {

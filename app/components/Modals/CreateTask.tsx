@@ -78,7 +78,7 @@ const CreateContent = () => {
                     value={title}
                     name='title'
                     onChange={handleChange('title')}
-                    placeholder="np. Dokoñcz footer."
+                    placeholder="np. Brand logo design"
                 />
             </div>
 
@@ -90,7 +90,8 @@ const CreateContent = () => {
                     rows={4}
                     name='description'
                     onChange={handleChange('description')}
-                    placeholder="np. Dokoñcz footer."
+                    placeholder="Design a mobile or web interface for an Al-
+                    powered image generator application."
                 ></textarea>
             </div>
 
@@ -135,7 +136,7 @@ const CreateContent = () => {
                     borderRad={"0.8rem"}
                     fontW={"500"}
                     fontS={"1.2rem"}
-                    background={theme.colorGreenDark}
+                    background={theme.colorButton}
                 />
             </div>
         </CreateTaskStyled>
@@ -143,12 +144,14 @@ const CreateContent = () => {
 }
 
 const CreateTaskStyled = styled.form`
+    
+    color: ${(props) => props.theme.colorGrey1};
+    
     > h1 {
         font-size: clamp(1.2rem, 5vw, 1.6rem);
         font-weight: 600;
     }
 
-    color: ${(props) => props.theme.colorGrey1};
 
     .input-control {
         position: relative;
@@ -186,7 +189,7 @@ const CreateTaskStyled = styled.form`
         }
 
         &:hover {
-            background: ${(props) => props.theme.colorGreenDark} !important;
+            background: ${(props) => props.theme.borderColor1} !important;
         }
     }
     

@@ -1,5 +1,5 @@
 "use client"
-import { arrow, bars, logout } from '@/app/utils/icons';
+import { arrow, bars, logout, palette } from '@/app/utils/icons';
 import { useClerk, UserButton, useUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,7 +12,7 @@ import Button from '../Button/Button';
 
 const Sidebar = () => {
 
-  const { theme, collapsed, collapseMenu } = useGlobalState();
+  const { theme, changeTheme, collapsed, collapseMenu } = useGlobalState();
 
   const router = useRouter();
   const pathname = usePathname();
@@ -63,19 +63,33 @@ const Sidebar = () => {
           )
         })}
       </ul>
-      <div className="sign-out relative m-6">
-        <Button
-          name={"Wyloguj"}
-          type={"submit"}
-          padding={"0.4rem 0.8rem"}
-          borderRad={"0.8rem"}
-          fontS={"500"}
-          fontW={"1.2rem"}
-          icon={logout}
-          click={() => {
-            signOut(() => router.push("/sign-in"));
-          }}
-        />
+      <div className="button-container">
+        <div className="change-style relative m-6">
+          <Button
+            name={"Zmień styl"}
+            type={"submit"}
+            padding={"0.4rem 0.8rem"}
+            borderRad={"0.8rem"}
+            fontS={"500"}
+            fontW={"1.2rem"}
+            icon={palette}
+            click={ changeTheme }
+          />
+        </div>
+        <div className="sign-out relative m-6">
+          <Button
+            name={"Wyloguj"}
+            type={"submit"}
+            padding={"0.4rem 0.8rem"}
+            borderRad={"0.8rem"}
+            fontS={"500"}
+            fontW={"1.2rem"}
+            icon={logout}
+            click={() => {
+              signOut(() => router.push("/sign-in"));
+            }}
+          />
+        </div>
       </div>
     </SidebarStyled>
   )
@@ -248,7 +262,7 @@ const SidebarStyled = styled.nav<{ collapsed: boolean }>`
       width: 0%;
       top: 0;
       height: 100%;
-      background: ${(props) => props.theme.colorGreenDark};
+      background: ${(props) => props.theme.borderColor2};
 
       border-bottom-left-radius: 5px;
       border-top-left-radius: 5px;

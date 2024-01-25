@@ -19,11 +19,13 @@ const TaskItem = ({ title, description, date, isCompleted, id }: Props) => {
     // const { title, description, date, completed, important } = task;
     return (
         <TaskItemStyled theme={theme}>
-            <h1>{title}</h1>
+            <div className="task-header flex justify-between items-center">
+                <h1>{title}</h1>
+                <p className='date'>
+                    {formatDate(date)}
+                </p>
+            </div>
             <p>{description}</p>
-            <p className='date'>
-                {formatDate(date)}
-            </p>
             <div className="task-footer">
                 {isCompleted ? (
                     <button
@@ -67,28 +69,30 @@ const TaskItem = ({ title, description, date, isCompleted, id }: Props) => {
 const TaskItemStyled = styled.div`
     padding: 1.2rem 1rem;
     border-radius: 1rem;
-    background: ${(props) => props.theme.borderColor2};
+    background: ${(props) => props.theme.colorBgTask};
     box-shadow: ${(props) => props.theme.shadow7};
     border: 2px solid ${(props) => props.theme.borderColor2};
 
     height: 16rem;
+    /* width: 25rem; */
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 
-    .date {
-        margin-top: auto;
-    }
-
-    > h1 {
+    .task-header > h1 {
         font-size: 1.5rem;
         font-weight: 600;
+    }
+
+    .task-header .date {
+        font-size: 1rem;
     }
 
     .task-footer {
         display: flex;
         align-items: center;
         gap: 1.2rem;
+        margin-top: auto;
     }
     
     button {
@@ -109,11 +113,20 @@ const TaskItemStyled = styled.div`
     .completed, .incomplete {
         display: inline-block;
         padding: 0.4rem 1rem;
-        background: ${(props) => props.theme.colorDanger};
-        border-radius: 30px;
-    }
+        background: ${(props) => props.theme.colorIncompleted};
+        color: ${(props) => props.theme.colorIncompletedText};
+        border-radius: 15px;
+        transition: .3s ease-in-out;
+        &:hover {
+            background: ${(props) => props.theme.colorIncompletedDark};
+        }
+    }   
     .completed {
-        background: ${(props) => props.theme.colorGreenDark};
+        background: ${(props) => props.theme.colorCompleted};
+        color: #fff;
+        &:hover {
+            background: ${(props) => props.theme.colorCompletedDark};
+        }
     }
 `;
 

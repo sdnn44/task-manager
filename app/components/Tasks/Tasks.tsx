@@ -18,7 +18,16 @@ const Tasks = ({ title, tasks }: Props) => {
   return (
     <TasksStyled theme={theme}>
       {modal && <Modal content={<CreateContent />} />}
-      <h1>{title}</h1>
+      <div className="header-container flex justify-between items-center">
+        <h1>{title}</h1>
+
+        <button
+          className="add"
+          onClick={openModal}
+        >
+          {plus}
+        </button>
+      </div>
       <div className="tasks grid">
         {tasks.map((task) => (
           <TaskItem
@@ -62,7 +71,7 @@ const TasksStyled = styled.main`
     width: 0.5rem;
   }
 
-  > h1 {
+  .header-container > h1 {
     font-size: clamp(1.5rem, 2vw, 2rem);
     font-weight: 800;
     position: relative;
@@ -74,8 +83,18 @@ const TasksStyled = styled.main`
       left: 0;
       width: 3rem;
       height: 0.2rem;
-      background: ${(props) => props.theme.colorPrimaryGreen};
+      background: ${(props) => props.theme.colorDanger};
       border-radius: .5rem;
+    }
+  }
+
+  .header-container i {
+      font-size: 2rem;
+      cursor: pointer;
+      transition: .3s ease-in-out;
+
+      &:hover {
+      color: ${(props) => props.theme.colorGrey2};
     }
   }
 
@@ -90,13 +109,13 @@ const TasksStyled = styled.main`
     color: ${(props) => props.theme.colorGrey2};
     cursor: pointer;
 
-    border: 3px dashed ${(props) => props.theme.colorGrey5};
+    border: 2px dashed ${(props) => props.theme.borderColor2};
     border-radius: 1rem;
 
     transition: .3s ease;
 
     &:hover {
-      background: ${(props) => props.theme.colorGrey5};
+      background: ${(props) => props.theme.colorBgTask};
       color: ${(props) => props.theme.colorGrey0};
     }
   }
