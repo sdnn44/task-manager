@@ -1,11 +1,13 @@
 "use client"
 import { useGlobalState } from '@/app/context/globalContextProvider'
 import { plus } from '@/app/utils/icons'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import CreateContent from '../Modals/CreateTask'
 import Modal from '../Modals/Modal'
 import TaskItem from '../TaskItem/TaskItem'
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { search } from '@/app/utils/icons';
 
 interface Props {
   title: string;
@@ -13,6 +15,7 @@ interface Props {
 }
 
 const Tasks = ({ title, tasks }: Props) => {
+  const [searchPhrase, setSearchPhrase] = useState("");
   const { theme, openModal, modal, isLoading } = useGlobalState();
 
   return (
@@ -21,8 +24,17 @@ const Tasks = ({ title, tasks }: Props) => {
       <div className="header-container flex justify-between items-center">
         <h1>{title}</h1>
 
+        <Search theme={theme}>
+          {search}
+          <input
+            type="text"
+            placeholder="Wyszukaj zadanie..."
+            onChange={(e) => setSearchPhrase(e.target.value)}
+          />
+        </Search>
+
         <button
-          className="add"
+          className="flex items-center ml-5"
           onClick={openModal}
         >
           {plus}
@@ -118,6 +130,28 @@ const TasksStyled = styled.main`
       background: ${(props) => props.theme.colorBgTask};
       color: ${(props) => props.theme.colorGrey0};
     }
+  }
+`;
+
+const Search = styled.div`
+  display: flex;
+  align-items: center;
+  /* margin: 0 auto; */
+  margin-left: auto;
+  width: 40%;
+  background-color: rgb(31,38,49);
+  border-radius: 15px; 
+
+  input {
+    border: none;
+    outline: none;
+    background-color: rgb(31,38,49);
+    color: #fff;
+  }
+
+  i {
+    padding: .8rem;
+    color: ${(props) => props.theme.colorCompleted};
   }
 `;
 export default Tasks

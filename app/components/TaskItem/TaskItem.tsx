@@ -1,10 +1,10 @@
 "use client";
 
 import { useGlobalState } from '@/app/context/globalContextProvider';
-import { edit, trash } from '@/app/utils/icons';
 import React from 'react'
 import styled from 'styled-components';
 import formatDate from '@/app/utils/format-date';
+import Options from '../MoreOptions/Options';
 
 interface Props {
     title: string;
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const TaskItem = ({ title, description, date, isCompleted, id }: Props) => {
-    const { theme, deleteTask, editTask } = useGlobalState();
+    const { theme, editTask } = useGlobalState();
     // const { title, description, date, completed, important } = task;
     return (
         <TaskItemStyled theme={theme}>
@@ -51,16 +51,14 @@ const TaskItem = ({ title, description, date, isCompleted, id }: Props) => {
                         }}>
                         Nie ukończono</button>
                 )}
-                <button className="edit">
-                    {edit}
-                </button>
-                <button
-                    className="delete"
-                    onClick={() => {
-                        deleteTask(id);
-                    }}>
-                    {trash}
-                </button>
+                <div>
+                    <Options
+                        title={title}
+                        description={description}
+                        date={date}
+                        isCompleted={isCompleted}
+                        id={id} />
+                </div>
             </div>
         </TaskItemStyled>
     );
@@ -91,6 +89,7 @@ const TaskItemStyled = styled.div`
     .task-footer {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 1.2rem;
         margin-top: auto;
     }

@@ -19,12 +19,13 @@ const themes = [
     colorCompletedDark: "rgba(104, 66, 255, .7)",
     colorGreyDark: "#131313",
     colorGrey2: "#b2becd",
-    sidebarWidth: "15rem",
+    sidebarWidth: "25rem",
     activeNavLink: "rgba(249,249,249, 0.08)",
     activeNavLinkHover: "rgba(249,249,249, 0.03)",
     colorButton: "rgb(104, 66, 255)",
     foreground: "rgb(12, 13, 20)",
     colorBg1: "rgb(12, 13, 20)",
+    bgOption: "rgb(31,38,49)",
   },
   {
     //navy-blue
@@ -53,6 +54,7 @@ const themes = [
     foreground: "rgb(5,0,36)",
     colorBg1:
       "linear-gradient(90deg, rgba(5,0,36,1) 0%, rgba(5,24,64,1) 100%, rgba(9,45,121,1) 100%)",
+    bgOption: "rgb(5,0,36)",
   },
 ];
 export default themes;
