@@ -13,9 +13,9 @@ const GlobalStyleProvider = ({ children }: Props) => {
 }
 
 const GlobalStyles = styled.div`
-    padding: 2.5rem;
+    padding: 1rem;
     display: flex;
-    gap: 2.5rem;
+    /* gap: 2.5rem; */
     height: 100%;
 
     background: ${(props) => props.theme.foreground};

@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import CreateContent from '../Modals/CreateTask'
 import Modal from '../Modals/Modal'
 import TaskItem from '../TaskItem/TaskItem'
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { search } from '@/app/utils/icons';
 
 interface Props {
@@ -17,6 +16,10 @@ interface Props {
 const Tasks = ({ title, tasks }: Props) => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const { theme, openModal, modal, isLoading } = useGlobalState();
+
+  const filteredTasksByName = tasks.filter(task =>
+    task.title.toLowerCase().includes(searchPhrase.toLowerCase())
+  );
 
   return (
     <TasksStyled theme={theme}>
@@ -41,7 +44,7 @@ const Tasks = ({ title, tasks }: Props) => {
         </button>
       </div>
       <div className="tasks grid">
-        {tasks.map((task) => (
+        {filteredTasksByName.map((task) => (
           <TaskItem
             key={task.id}
             title={task.title}
@@ -71,7 +74,8 @@ const TasksStyled = styled.main`
   background: ${(props) => props.theme.colorBg2};
 
   border: 2px solid ${(props) => props.theme.borderColor2};
-  border-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 
   overflow-y: auto;
 

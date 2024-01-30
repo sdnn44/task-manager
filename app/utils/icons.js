@@ -24,3 +24,4 @@ export const linked = <i className="fa-brands fa-linkedin"></i>;
 export const mailIcon = <i className="fa-solid fa-envelope"></i>;
 export const plus = <i className="fa-solid fa-plus"></i>;
 export const palette = <i class="fa-solid fa-palette"></i>;
+export const settings = <i class="fa-solid fa-user-gear"></i>;

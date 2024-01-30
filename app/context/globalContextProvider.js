@@ -77,6 +77,11 @@ export const GlobalProvider = ({ children }) => {
   const incompleteTasks = tasks.filter((task) => task.isCompleted === false);
   const importantTasks = tasks.filter((task) => task.isImportant === true);
 
+  const percentageOfSuccessful = () => {
+    const value = (completedTasks.length/tasks.length)*100;
+    return value;
+  }
+
   React.useEffect(() => {
     if (user) getAllTasks();
   }, [user]);
@@ -93,6 +98,7 @@ export const GlobalProvider = ({ children }) => {
         completedTasks,
         incompleteTasks,
         importantTasks,
+        percentageOfSuccessful,
         isLoading,
         modal,
         openModal,

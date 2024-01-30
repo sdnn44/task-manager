@@ -1,6 +1,7 @@
 "use client"
-import { arrow, bars, logout, palette } from '@/app/utils/icons';
+import { arrow, bars, logout, palette, settings } from '@/app/utils/icons';
 import { useClerk, UserButton, useUser } from '@clerk/nextjs';
+import { Divider } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -39,13 +40,19 @@ const Sidebar = () => {
         <div className="image">
           <Image width={70} height={70} src={imageUrl} alt="profile"></Image>
         </div>
-        <div className="user-btn absolute z-20 top-0 w-full h-full">
-          <UserButton />
-        </div>
         <h1>
           <span>{firstName}</span>
           <span>{lastName}</span>
         </h1>
+        <div className="user-btn absolute z-20 top-0 w-full h-full">
+          <UserButton />
+        </div>
+        <div
+          className="profile-actions"
+        >
+          <UserButton />
+          {settings}
+        </div>
       </div>
       <ul className='nav-items'>
         {menu.map((item) => {
@@ -63,6 +70,7 @@ const Sidebar = () => {
           )
         })}
       </ul>
+      {/* <Divider sx={{ bgcolor: '#eee' }} variant="middle" textAlign="right">TeST</Divider> */}
       <div className="button-container">
         <div className="change-style relative m-6">
           <Button
@@ -73,7 +81,7 @@ const Sidebar = () => {
             fontS={"500"}
             fontW={"1.2rem"}
             icon={palette}
-            click={ changeTheme }
+            click={changeTheme}
           />
         </div>
         <div className="sign-out relative m-6">
@@ -100,7 +108,8 @@ const SidebarStyled = styled.nav<{ collapsed: boolean }>`
   position: relative;
   background: ${(props) => props.theme.colorBg2};
   border: 2px solid ${(props) => props.theme.borderColor2}; 
-  border-radius: 1rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 
   display: flex;
   flex-direction: column;
@@ -161,7 +170,7 @@ const SidebarStyled = styled.nav<{ collapsed: boolean }>`
   }
 
   .profile {
-    margin: 1.5rem;
+    margin: 1.5rem .3rem; 
     position: relative;
     padding: 1rem 0.8rem;
 
@@ -172,7 +181,7 @@ const SidebarStyled = styled.nav<{ collapsed: boolean }>`
 
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     
     .profile-overlay {
       position: absolute;
@@ -188,6 +197,34 @@ const SidebarStyled = styled.nav<{ collapsed: boolean }>`
       border: 2px solid ${(props) => props.theme.borderColor2};
 
       opacity: 0.2;
+    }
+
+    .profile-actions {
+      z-index: 100;
+      display: flex;
+
+      .cl-rootBox {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+
+      .cl-userButtonBox {
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+
+        .cl-buttonTrigger {
+          width: 100%;
+          height: 100%;
+          background: red;
+        }
+      }
+    }
+
+      i {
+        font-size: 1.5rem;
+      }
     }
 
     h1 {
@@ -219,7 +256,7 @@ const SidebarStyled = styled.nav<{ collapsed: boolean }>`
     }
 
     > h1 {
-      margin-left: 1rem;
+      margin-right: 4rem;
       font-size: clamp(1.2rem, 4vw, 1.4rem);
       line-height: 100%;
     }

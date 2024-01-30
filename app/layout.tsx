@@ -12,7 +12,7 @@ import { useGlobalState } from './context/globalContextProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Task manager',
+  title: 'TASKager',
   description: 'Twórz zadania na każdy dzień',
 }
 

@@ -68,10 +68,10 @@ const CreateContent = () => {
 
     return (
         <CreateTaskStyled onSubmit={handleSubmit} theme={theme}>
-            <h1>Utwórz zadanie</h1>
+            <h1>Create new task</h1>
 
             <div className="input-control">
-                <label htmlFor='title'>Nazwa zadania</label>
+                <label htmlFor='title'>Task title</label>
                 <input
                     type='text'
                     id='title'
@@ -83,7 +83,7 @@ const CreateContent = () => {
             </div>
 
             <div className="input-control">
-                <label htmlFor='description'>Opis zadania</label>
+                <label htmlFor='description'>Task description</label>
                 <textarea
                     id='description'
                     value={description}
@@ -96,7 +96,7 @@ const CreateContent = () => {
             </div>
 
             <div className="input-control">
-                <label htmlFor='date'>Data</label>
+                <label htmlFor='date'>Date</label>
                 <input
                     type='date'
                     id='date'
@@ -107,7 +107,7 @@ const CreateContent = () => {
             </div>
 
             <div className="input-control toggler">
-                <label htmlFor='completed'>Wykonano</label>
+                <label htmlFor='completed'>Completed</label>
                 <input
                     type='checkbox'
                     id='completed'
@@ -118,7 +118,7 @@ const CreateContent = () => {
             </div>
 
             <div className="input-control toggler">
-                <label htmlFor='important'>Wazne</label>
+                <label htmlFor='important'>Important</label>
                 <input
                     type='checkbox'
                     id='important'
