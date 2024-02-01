@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
 import toast from "react-hot-toast";
 import themes from "./themes";
+import { endOfDay, isAfter, isBefore, subDays } from "date-fns";
 
 export const GlobalContext = createContext();
 export const GlobalUpdateContext = createContext();
@@ -21,8 +22,7 @@ export const GlobalProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
 
   const changeTheme = () => {
-    if(selectedTheme == 0)
-      setSelectedTheme(1);
+    if (selectedTheme == 0) setSelectedTheme(1);
     else setSelectedTheme(0);
   };
 
@@ -36,7 +36,7 @@ export const GlobalProvider = ({ children }) => {
 
   const collapseMenu = () => {
     setCollapsed(!collapsed);
-  }
+  };
 
   const getAllTasks = async () => {
     setIsLoading(true);
@@ -44,7 +44,9 @@ export const GlobalProvider = ({ children }) => {
       const res = await axios.get("/api/tasks");
 
       const sorted = res.data.sort((a, b) => {
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        return (
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
       });
 
       setTasks(sorted);
@@ -73,14 +75,32 @@ export const GlobalProvider = ({ children }) => {
       toast.error("Proba edycji zadania nie powiodla sie.");
     }
   };
-  const completedTasks = tasks.filter((task) => task.isCompleted === true);
-  const incompleteTasks = tasks.filter((task) => task.isCompleted === false);
+
+  //Task marked as important
   const importantTasks = tasks.filter((task) => task.isImportant === true);
 
+  //Task completed before time
+  const completedTasks = tasks.filter((task) => task.isCompleted === true);
+
+  const currentDate = new Date();
+  const endOfToday = endOfDay(subDays(currentDate, 1));
+
+  //Task not performed, performance time not yet expired (including today's tasks)
+  const incompleteTasks = tasks.filter(
+    (task) =>
+      task.isCompleted === false && isAfter(new Date(task.date), endOfToday)
+  );
+
+  //The task has not been completed, the execution time has expired (excluding today's tasks)
+  const missedTasks = tasks.filter(
+    (task) =>
+      task.isCompleted === false && isBefore(new Date(task.date), endOfToday)
+  );
+
   const percentageOfSuccessful = () => {
-    const value = (completedTasks.length/tasks.length)*100;
+    const value = ((completedTasks.length / tasks.length) * 100).toFixed(2);
     return value;
-  }
+  };
 
   React.useEffect(() => {
     if (user) getAllTasks();
@@ -97,6 +117,7 @@ export const GlobalProvider = ({ children }) => {
         editTask,
         completedTasks,
         incompleteTasks,
+        missedTasks,
         importantTasks,
         percentageOfSuccessful,
         isLoading,
@@ -104,7 +125,7 @@ export const GlobalProvider = ({ children }) => {
         openModal,
         closeModal,
         collapsed,
-        collapseMenu
+        collapseMenu,
       }}
     >
       <GlobalUpdateContext.Provider value={{}}>

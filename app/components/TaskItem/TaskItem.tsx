@@ -9,7 +9,7 @@ import Options from '../MoreOptions/Options';
 interface Props {
     title: string;
     description: string;
-    date: string;
+    date: Date;
     isCompleted: boolean;
     id: string;
 }
@@ -52,12 +52,7 @@ const TaskItem = ({ title, description, date, isCompleted, id }: Props) => {
                         Nie ukończono</button>
                 )}
                 <div>
-                    <Options
-                        title={title}
-                        description={description}
-                        date={date}
-                        isCompleted={isCompleted}
-                        id={id} />
+                    <Options id={id} />
                 </div>
             </div>
         </TaskItemStyled>

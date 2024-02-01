@@ -6,14 +6,10 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { IconButton, ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material';
 
 interface OptionsProps {
-    title: string;
-    description: string;
-    date: string;
-    isCompleted: boolean;
     id: string;
 }
 
-const Options = ({ title, description, date, isCompleted, id }: OptionsProps) => {
+const Options = ({ id }: OptionsProps) => {
     const { theme, deleteTask } = useGlobalState();
 
     const [anchorEl, setAnchorEl] = useState(null);

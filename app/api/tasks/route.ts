@@ -36,6 +36,7 @@ export async function POST(req: Request) {
         });
         return NextResponse.json(task);
     } catch (error) {
+        console.log(error);
         return NextResponse.json({ error: "Error while creating task", status: 500 });
     } finally {
         await prisma.$disconnect();
@@ -56,6 +57,7 @@ export async function GET(req: Request) {
         });
         return NextResponse.json(tasks);
     } catch (error) {
+        console.log(error);
         return NextResponse.json({ error: "Error while getting task", status: 500 });
     } finally {
         await prisma.$disconnect();

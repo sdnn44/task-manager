@@ -59,11 +59,11 @@ const Sidebar = () => {
           const link = item.link;
           return (
             <li
-              key={item.id}
-              className={`nav-item ${pathname === link ? "active" : ""}`}
-              onClick={() => {
-                handleClick(link);
-              }}>
+            key={item.id}
+            className={`nav-item ${pathname === link ? "active" : ""} my-${item.margin}`}
+            onClick={() => {
+              handleClick(link);
+            }}>
               {item.icon}
               <Link href={link}>{item.title}</Link>
             </li>
@@ -104,7 +104,7 @@ const Sidebar = () => {
 }
 
 const SidebarStyled = styled.nav<{ collapsed: boolean }>`
-  width: ${(props) => props.theme.sidebarWidth};
+  max-width: ${(props) => props.theme.sidebarWidth};
   position: relative;
   background: ${(props) => props.theme.colorBg2};
   border: 2px solid ${(props) => props.theme.borderColor2}; 
@@ -147,7 +147,6 @@ const SidebarStyled = styled.nav<{ collapsed: boolean }>`
 
     background: ${(props) => props.theme.colorBg2};
   }
-
 
   .user-btn {
     .cl-rootBox {
@@ -274,7 +273,7 @@ const SidebarStyled = styled.nav<{ collapsed: boolean }>`
   .nav-item {
     position: relative;
     padding: 0.7rem 1rem 0.7rem 2.1rem;
-    margin: 0.3rem 0;
+    /* margin: 0.3rem 0; */
 
     display: grid;
     grid-template-columns: 40px 1fr;

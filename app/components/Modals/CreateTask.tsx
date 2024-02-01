@@ -44,7 +44,7 @@ const CreateContent = () => {
         const task = {
             title,
             description,
-            date,
+            date: new Date(date).toISOString(),
             completed,
             important,
         };
@@ -55,10 +55,11 @@ const CreateContent = () => {
             if (res.data.error) {
                 toast.error(res.data.error);
             }
-
-            toast.success("Zadanie zostalo utworzone pomyslnie.");
-            getAllTasks();
-            closeModal();
+            if (!res.data.error) {
+                toast.success("Zadanie zostalo utworzone pomyslnie.");
+                getAllTasks();
+                closeModal();
+            }
         } catch (error) {
             toast.error("Cos poszlo nie tak.");
             console.log(error);

@@ -5,13 +5,13 @@ import styled from 'styled-components';
 
 const PieChartbox = () => {
 
-    const { theme, tasks, incompleteTasks, completedTasks, percentageOfSuccessful } = useGlobalState();
+    const { theme, tasks, incompleteTasks, completedTasks, missedTasks, percentageOfSuccessful } = useGlobalState();
 
     const data = [
         { name: 'Total', value: tasks.length, color: '#d800fe' },
         { name: 'Completed', value: completedTasks.length, color: '#0088FE' },
         { name: 'Pending', value: incompleteTasks.length, color: '#00C49F' },
-        { name: 'Missed', value: 1, color: '#FF8042' },
+        { name: 'Missed', value: missedTasks.length, color: '#FF8042' },
     ];
     const COLORS = ['#0088FE', '#00C49F', '#FF8042'];
     // TOTAL, COMPLETED, PENDING (INCOMPLETED BUT NOT MISSED), MISSED(TIMED OUT)
