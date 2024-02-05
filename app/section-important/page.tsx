@@ -6,7 +6,7 @@ import { useGlobalState } from '../context/globalContextProvider';
 
 const page = () => {
   const { importantTasks } = useGlobalState();
-  return <Tasks title='Wazne' tasks={importantTasks} />;
+  return <Tasks title='Important tasks' tasks={importantTasks} />;
 }
 
 export default page

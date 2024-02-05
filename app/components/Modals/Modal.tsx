@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 interface Props {
     content: React.ReactNode;
+    // onClose: () => void;
 }
 
 const Modal = ({ content }: Props) => {

@@ -3,10 +3,11 @@ import { useGlobalState } from '@/app/context/globalContextProvider'
 import { plus } from '@/app/utils/icons'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import CreateContent from '../Modals/CreateTask'
+import CreateTask from '../Modals/CreateTask'
 import Modal from '../Modals/Modal'
 import TaskItem from '../TaskItem/TaskItem'
 import { search } from '@/app/utils/icons';
+import EditTask from '../Modals/EditTask'
 
 interface Props {
   title: string;
@@ -15,7 +16,7 @@ interface Props {
 
 const Tasks = ({ title, tasks }: Props) => {
   const [searchPhrase, setSearchPhrase] = useState("");
-  const { theme, openModal, modal, isLoading } = useGlobalState();
+  const { theme, openModal, modal, modalContent, closeModal, isLoading } = useGlobalState();
 
   const filteredTasksByName = tasks.filter(task =>
     task.title.toLowerCase().includes(searchPhrase.toLowerCase())
@@ -23,15 +24,16 @@ const Tasks = ({ title, tasks }: Props) => {
 
   return (
     <TasksStyled theme={theme}>
-      {modal && <Modal content={<CreateContent />} />}
-      <div className="header-container flex justify-between items-center">
+      {modal && <Modal content={<CreateTask />} />}
+      {/* {modal && modalContent === 'EditTask' && <Modal content={<EditTask />}  />} */}
+      <div className="header-container flex items-center">
         <h1>{title}</h1>
 
         <Search theme={theme}>
           {search}
           <input
             type="text"
-            placeholder="Wyszukaj zadanie..."
+            placeholder="Search for task..."
             onChange={(e) => setSearchPhrase(e.target.value)}
           />
         </Search>
@@ -58,7 +60,7 @@ const Tasks = ({ title, tasks }: Props) => {
           onClick={openModal}
         >
           {plus}
-          Dodaj nowe zadanie
+          Add new task
         </button>
       </div>
     </TasksStyled>
@@ -135,6 +137,21 @@ const TasksStyled = styled.main`
       color: ${(props) => props.theme.colorGrey0};
     }
   }
+
+  @media screen and (max-width: 530px) { 
+    .header-container i {
+      font-size: 1.4rem;
+    }
+  }
+
+  @media screen and (max-width: 450px) { 
+    .header-container > h1 {
+      font-size: 1rem;
+    }
+    .header-container i {
+      font-size: 1rem;
+    }
+  }
 `;
 
 const Search = styled.div`
@@ -156,6 +173,39 @@ const Search = styled.div`
   i {
     padding: .8rem;
     color: ${(props) => props.theme.colorCompleted};
+  }
+
+  @media screen and (max-width: 1250px) {
+    width: 50%;
+  }
+
+  @media screen and (max-width: 1040px) {
+    width: 60%;
+  }
+
+  @media screen and (max-width: 930px) {
+      input {
+        width: 50%;
+      }
+      i {
+        font-size: 1.2rem !important;
+      }
+  }
+
+  @media screen and (max-width: 800px) {
+      width: 50%;
+      font-size: .8rem;
+  }
+
+  @media screen and (max-width: 530px) { 
+    i {
+      padding: .5rem;
+      font-size: 1rem !important;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 40%;
   }
 `;
 export default Tasks

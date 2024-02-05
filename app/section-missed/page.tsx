@@ -5,7 +5,7 @@ import { useGlobalState } from '../context/globalContextProvider';
 
 const page = () => {
     const { missedTasks } = useGlobalState();
-    return <Tasks title='Missed' tasks={missedTasks} />;
+    return <Tasks title='Missed tasks' tasks={missedTasks} />;
 
 }
 

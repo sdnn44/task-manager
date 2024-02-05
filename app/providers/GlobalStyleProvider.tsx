@@ -31,5 +31,19 @@ const GlobalStyles = styled.div`
         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
         gap: 1.5rem;
     }
+
+    @media screen and (max-width: 450px) {
+        .grid {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+    }
+
+    @media screen and (max-width: 380px) {
+        padding: .5rem;
+        .grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+    }
+
 `;
 export default GlobalStyleProvider

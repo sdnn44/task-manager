@@ -25,7 +25,7 @@ const TaskItem = ({ title, description, date, isCompleted, id }: Props) => {
                     {formatDate(date)}
                 </p>
             </div>
-            <p>{description}</p>
+            <p className='description'>{description}</p>
             <div className="task-footer">
                 {isCompleted ? (
                     <button
@@ -37,7 +37,7 @@ const TaskItem = ({ title, description, date, isCompleted, id }: Props) => {
                             };
                             editTask(task);
                         }}>
-                        Ukończono
+                        Completed
                     </button>
                 ) : (
                     <button
@@ -49,7 +49,7 @@ const TaskItem = ({ title, description, date, isCompleted, id }: Props) => {
                             };
                             editTask(task);
                         }}>
-                        Nie ukończono</button>
+                        Incomplete</button>
                 )}
                 <div>
                     <Options id={id} />
@@ -120,6 +120,32 @@ const TaskItemStyled = styled.div`
         color: #fff;
         &:hover {
             background: ${(props) => props.theme.colorCompletedDark};
+        }
+    }
+
+    @media screen and (max-width: 530px) {
+        .task-header > h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .task-header .date {
+            font-size: 0.8rem;
+        } 
+    }
+    @media screen and (max-width: 450px) {
+        .task-header > h1 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .task-header .date {
+            font-size: 0.8rem;
+        } 
+        .description {
+            font-size: 0.8rem;
+        }
+        .completed, .incomplete {
+            font-size: .8rem;
+            padding: 0.3rem 0.7rem;
         }
     }
 `;

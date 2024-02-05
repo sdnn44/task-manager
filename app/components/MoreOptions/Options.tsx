@@ -10,7 +10,7 @@ interface OptionsProps {
 }
 
 const Options = ({ id }: OptionsProps) => {
-    const { theme, deleteTask } = useGlobalState();
+    const { theme, openModal, deleteTask } = useGlobalState();
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -67,10 +67,13 @@ const Options = ({ id }: OptionsProps) => {
                     onClick={() => {
                         handleClose();
                     }}>
-                    <ListItemIcon sx={{ color: "white" }}>
+                    <ListItemIcon
+                        sx={{ color: "white" }}
+                        onClick={openModal.editingTask}
+                    >
                         {edit}
                     </ListItemIcon>
-                    <ListItemText>Edycja</ListItemText>
+                    <ListItemText>Edit</ListItemText>
                 </MenuItem>
 
                 <MenuItem
@@ -81,7 +84,7 @@ const Options = ({ id }: OptionsProps) => {
                     <ListItemIcon sx={{ color: "white" }}>
                         {trash}
                     </ListItemIcon>
-                    <ListItemText>Usuń</ListItemText>
+                    <ListItemText>Delete</ListItemText>
                 </MenuItem>
 
             </Menu>

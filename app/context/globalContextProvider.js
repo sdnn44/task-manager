@@ -16,7 +16,10 @@ export const GlobalProvider = ({ children }) => {
   const { user } = useUser();
 
   const [isLoading, setIsLoading] = useState(false);
+
   const [modal, setModal] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
+  
   const [collapsed, setCollapsed] = useState(false);
 
   const [tasks, setTasks] = useState([]);
@@ -27,10 +30,12 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const openModal = () => {
+    // setModalContent(content);
     setModal(true);
   };
 
   const closeModal = () => {
+    // setModalContent(null);
     setModal(false);
   };
 
@@ -122,6 +127,7 @@ export const GlobalProvider = ({ children }) => {
         percentageOfSuccessful,
         isLoading,
         modal,
+        modalContent,
         openModal,
         closeModal,
         collapsed,
