@@ -12,7 +12,7 @@ const themes = [
     colorCompleted: "rgb(104, 66, 255)",
     colorCompletedDark: "rgba(104, 66, 255, .7)",
     colorGreyDark: "#131313",
-    sidebarWidth: "25rem",
+    sidebarWidth: "18rem",
     activeNavLink: "rgba(249,249,249, 0.08)",
     activeNavLinkHover: "rgba(249,249,249, 0.03)",
     colorButton: "rgb(104, 66, 255)",

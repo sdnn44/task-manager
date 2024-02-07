@@ -40,12 +40,9 @@ const Options = ({ id }: OptionsProps) => {
                 id="long-menu"
                 sx={{
                     "& .MuiMenu-paper": {
-                        backgroundColor: theme.bgOption,
+                        backgroundColor: theme.foreground,
                         color: "white",
                     },
-                    "& .MuiMenu-root": {
-                        color: "red",
-                    }
                 }}
                 anchorEl={anchorEl}
                 open={open}

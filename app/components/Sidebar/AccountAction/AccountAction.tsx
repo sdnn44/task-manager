@@ -22,8 +22,8 @@ const AccountAction = () => {
                     type={"submit"}
                     padding={"0.4rem 0.8rem"}
                     borderRad={"0.8rem"}
-                    fontS={"500"}
-                    fontW={"1.2rem"}
+                    fontS={"1rem"}
+                    fontW={"400"}
                     icon={palette}
                     click={changeTheme}
                 />
@@ -34,8 +34,8 @@ const AccountAction = () => {
                     type={"submit"}
                     padding={"0.4rem 0.8rem"}
                     borderRad={"0.8rem"}
-                    fontS={"500"}
-                    fontW={"1.2rem"}
+                    fontS={"1rem"}
+                    fontW={"400"}
                     icon={logout}
                     click={() => {
                         signOut(() => router.push("/sign-in"));

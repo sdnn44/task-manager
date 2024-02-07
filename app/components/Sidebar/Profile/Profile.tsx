@@ -9,38 +9,38 @@ import { useGlobalState } from '@/app/context/globalContextProvider';
 
 const Profile = () => {
 
-    const { user } = useUser();
-    const { firstName, lastName, imageUrl } = user || {
-        firstName: "",
-        lastName: "",
-        imageUrl: "",
-    }
+  const { user } = useUser();
+  const { firstName, lastName, imageUrl } = user || {
+    firstName: "",
+    lastName: "",
+    imageUrl: "",
+  }
 
-    const { theme } = useGlobalState();
+  const { theme } = useGlobalState();
 
-    return (
-        <StyledProfile theme={theme}>
-            <div className="profile-overlay"></div>
-            <div className="image">
-                <Image width={70} height={70} src={imageUrl} alt="profile"></Image>
-            </div>
-            <div className="profile-name">
-                <h1>
-                    <span>{firstName}</span>
-                    <span>{lastName}</span>
-                </h1>
-            </div>
-            <div className="user-btn absolute z-20 top-0 w-full h-full">
-                <UserButton />
-            </div>
-            <div
-                className="profile-actions"
-            >
-                <UserButton />
-                {settings}
-            </div>
-        </StyledProfile>
-    )
+  return (
+    <StyledProfile theme={theme}>
+      <div className="profile-overlay"></div>
+      <div className="image">
+        <Image width={70} height={70} src={imageUrl} alt="profile"></Image>
+      </div>
+      <div className="profile-name">
+        <h1>
+          <span>{firstName}</span>
+          <span>{lastName}</span>
+        </h1>
+      </div>
+      <div className="user-btn absolute z-20 top-0 w-full h-full">
+        <UserButton />
+      </div>
+      <div
+        className="profile-actions"
+      >
+        <UserButton />
+        {settings}
+      </div>
+    </StyledProfile>
+  )
 }
 
 const StyledProfile = styled.div`
@@ -113,12 +113,12 @@ const StyledProfile = styled.div`
       }
     }
       i {
-        font-size: 1.5rem;
+        font-size: 1.1rem;
       }
     }
 
     .profile-name > h1 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       flex-direction: column;
       line-height: 1.2;
     }

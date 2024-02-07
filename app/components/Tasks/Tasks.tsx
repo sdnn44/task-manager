@@ -71,7 +71,7 @@ const TasksStyled = styled.main`
   height: 100%;
   width: 100%;
 
-  padding: 2rem;
+  padding: 1rem;
 
   background: ${(props) => props.theme.colorBg2};
 
@@ -107,7 +107,7 @@ const TasksStyled = styled.main`
   }
 
   .header-container i {
-      font-size: 2rem;
+      font-size: 1.5rem;
       cursor: pointer;
       transition: .3s ease-in-out;
 
@@ -122,7 +122,7 @@ const TasksStyled = styled.main`
     justify-content: center;
     gap: 0.5rem;
 
-    height: 16rem;
+    height: 14rem;
     font-weight: 600;
     color: ${(props) => props.theme.colorGrey2};
     cursor: pointer;
@@ -171,7 +171,7 @@ const Search = styled.div`
   }
 
   i {
-    padding: .8rem;
+    padding: .6rem;
     color: ${(props) => props.theme.colorCompleted};
   }
 

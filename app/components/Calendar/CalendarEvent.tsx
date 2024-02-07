@@ -96,6 +96,7 @@ const CalendarStyled = styled.main`
   border-bottom-right-radius: 1rem;
 
   overflow-y: auto;
+  
     .header-container > h1 {
     font-size: clamp(1.5rem, 2vw, 2rem);
     font-weight: 800;

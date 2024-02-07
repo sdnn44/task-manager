@@ -66,19 +66,23 @@ const TaskItemStyled = styled.div`
     box-shadow: ${(props) => props.theme.shadow7};
     border: 2px solid ${(props) => props.theme.borderColor2};
 
-    height: 16rem;
+    height: 14rem;
     /* width: 25rem; */
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 
     .task-header > h1 {
-        font-size: 1.5rem;
-        font-weight: 600;
+        font-size: 1.2rem;
+        font-weight: 500;
     }
 
     .task-header .date {
-        font-size: 1rem;
+        font-size: .8rem;
+    }
+
+    .description {
+        font-size: 0.9rem;
     }
 
     .task-footer {
@@ -106,7 +110,8 @@ const TaskItemStyled = styled.div`
 
     .completed, .incomplete {
         display: inline-block;
-        padding: 0.4rem 1rem;
+        padding: 0.4rem .8rem;
+        font-size: .8rem;
         background: ${(props) => props.theme.colorIncompleted};
         color: ${(props) => props.theme.colorIncompletedText};
         border-radius: 15px;

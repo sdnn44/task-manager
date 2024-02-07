@@ -134,7 +134,7 @@ const SidebarStyled = styled.nav<{ collapsed: boolean }>`
     }
 
     a {
-      font-weight: 500;
+      font-size: 1rem;
       transition: all .3s ease-in-out;
       z-index: 2;
     }
